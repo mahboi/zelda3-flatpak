@@ -3,6 +3,8 @@ runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: zelda3
+
+copy-icon: true
 finish-args:
  - --device=all
  - --share=ipc
@@ -36,6 +38,10 @@ modules:
    post-install:
     - mkdir /app/bin
     - cp /run/build/zelda3/_flatpak_build/zelda3 /app/bin/zelda3 #probably not the correct way to do this, but cmakelists has no install
+    - mkdir -p /app/share/applications
+    - cp /run/build/zelda3/zelda3.desktop /app/share/applications/zelda3.desktop
+    - mkdir -p /app/share/icons/hicolor/256x256/apps
+    - cp /run/build/zelda3/org.lukeusher.Zelda3.png /app/share/icons/hicolor/256x256/apps/org.lukeusher.Zelda3.png
    sources:
     - type: git
       url: https://github.com/LukeUsher/zelda3.git
@@ -43,6 +49,10 @@ modules:
       path: zelda3.sfc # local file, put in same directory as this file
       md5: 608c22b8ff930c62dc2de54bcd6eba72 # md5 sum of rom
       dest: tables                          # destination within source tree
+    - type: file
+      path: zelda3.desktop
+    - type: file
+      path: org.lukeusher.Zelda3.png
     - type: shell # run these commands after extraction
       commands:
        - cd tables; python extract_resources.py # have to cd into tables otherwise scripts don't work
