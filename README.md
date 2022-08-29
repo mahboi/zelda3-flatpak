@@ -22,7 +22,12 @@ To export it to another device (i.e. Steam Deck), create a bundle with:
     
 This pulls the version you just built and installed as a user and puts it into a bundle that you can transfer (maybe kinda, not super sure on that).
     
+To install from bundle:
+   
+    $ flatpak install --user org.lukeusher.Zelda3.flatpak
     
+Note that installing as a user is required for reasons that are flatpak arcana.
+
 ## TODO
 
  - [ ] Add .desktop file and icon
