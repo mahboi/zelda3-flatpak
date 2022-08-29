@@ -30,5 +30,5 @@ Note that installing as a user is required for reasons that are flatpak arcana.
 
 ## TODO
 
- - [ ] Add .desktop file and icon
+ - [X] ~~Add .desktop file and icon~~ (MarkkusBoi)
  - [ ] Remove python dependencies from final package
