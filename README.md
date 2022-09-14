@@ -13,13 +13,9 @@ Then, build and install the flatpak with:
 
     $ flatpak-builder build-dir org.snesrev.Zelda3.yml --user --install --force-clean
     
-Then, you can run it with:
+To export it to another device (e.g. Steam Deck), create a bundle with:
 
-    $ flatpak run org.snesrev.Zelda3
-    
-To export it to another device (i.e. Steam Deck), create a bundle with:
-
-    $ flatpak build-bundle ~/.local/share/flatpak/repo org.snesrev.Zelda3.flatpak org.snesrev.Zelda3
+    $ flatpak build-bundle ~/.local/share/flatpak/repo org.lukeusher.Zelda3.flatpak org.lukeusher.Zelda3
     
 This pulls the version you just built and installed as a user and puts it into a bundle that you can transfer (maybe kinda, not super sure on that).
     
@@ -28,6 +24,12 @@ To install from bundle:
     $ flatpak install --user org.snesrev.Zelda3.flatpak
     
 Note that installing as a user is required for reasons that are flatpak arcana.
+
+## Running
+
+After installing the flatpak, an entry named 'Zelda3' can be found in your desktop environment's applications menu or you can run it from a terminal with:
+
+    $ flatpak run org.snesrev.Zelda3
 
 ## Notes
 
