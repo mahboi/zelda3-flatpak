@@ -1,4 +1,4 @@
-app-id: org.lukeusher.Zelda3
+app-id: org.snesrev.Zelda3
 runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
@@ -32,28 +32,30 @@ modules:
       sha256: 68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2
  
  - name: zelda3
-   buildsystem: cmake
-   builddir: true
+   buildsystem: simple
+   builddir: false
    no-make-install: true
+   build-commands:
+    - make # This should just compile the executable like normal
    post-install:
     - mkdir /app/bin
-    - cp /run/build/zelda3/_flatpak_build/zelda3 /app/bin/zelda3 #probably not the correct way to do this, but cmakelists has no install
+    - cp /run/build/zelda3/zelda3 /app/bin/zelda3 #probably not the correct way to do this, but cmakelists has no install
     - mkdir -p /app/share/applications
-    - cp /run/build/zelda3/org.lukeusher.Zelda3.desktop /app/share/applications/org.lukeusher.Zelda3.desktop
+    - cp /run/build/zelda3/org.snesrev.Zelda3.desktop /app/share/applications/org.snesrev.Zelda3.desktop
     - mkdir -p /app/share/icons/hicolor/256x256/apps
-    - cp /run/build/zelda3/org.lukeusher.Zelda3.png /app/share/icons/hicolor/256x256/apps/org.lukeusher.Zelda3.png
+    - cp /run/build/zelda3/org.snesrev.Zelda3.png /app/share/icons/hicolor/256x256/apps/org.snesrev.Zelda3.png
    sources:
     - type: git
-      url: https://github.com/LukeUsher/zelda3.git
+      url: https://github.com/snesrev/zelda3.git
     - type: file
       path: zelda3.sfc # local file, put in same directory as this file
       md5: 608c22b8ff930c62dc2de54bcd6eba72 # md5 sum of rom
       dest: tables                          # destination within source tree
     - type: file
-      path: org.lukeusher.Zelda3.desktop
+      path: org.snesrev.Zelda3.desktop
     - type: file
-      path: org.lukeusher.Zelda3.png
+      path: org.snesrev.Zelda3.png
     - type: shell # run these commands after extraction
       commands:
-       - cd tables; python extract_resources.py # have to cd into tables otherwise scripts don't work
-       - cd tables; python compile_resources.py # and need to do it for each cmd
+       - cd tables; echo "Extracting resources from ROM"; python extract_resources.py # have to cd into tables otherwise scripts don't work
+       - cd tables; echo "Compiling extracted resources from ROM"; python compile_resources.py # and need to do it for each cmd
