@@ -15,7 +15,7 @@ Then, build and install the flatpak with:
     
 To export it to another device (e.g. Steam Deck), create a bundle with:
 
-    $ flatpak build-bundle ~/.local/share/flatpak/repo org.lukeusher.Zelda3.flatpak org.lukeusher.Zelda3
+    $ flatpak build-bundle ~/.local/share/flatpak/repo org.snesrev.Zelda3.flatpak org.snesrev.Zelda3
     
 This pulls the version you just built and installed as a user and puts it into a bundle that you can transfer (maybe kinda, not super sure on that).
     
